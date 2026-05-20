@@ -22,7 +22,7 @@ import (
 
 	corev1 "k8s.io/api/core/v1"
 
-	integrationsv1alpha1 "github.com/openmcp-project/platform-service-git-connection/api/v1alpha1"
+	integrationsv1alpha1 "github.com/openmcp-project/platform-service-integration-gitops/api/v1alpha1"
 )
 
 // Token represents a generated authentication token with its metadata.

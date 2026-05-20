@@ -26,8 +26,8 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	integrationsv1alpha1 "github.com/openmcp-project/platform-service-git-connection/api/v1alpha1"
-	"github.com/openmcp-project/platform-service-git-connection/test/e2e/mock"
+	integrationsv1alpha1 "github.com/openmcp-project/platform-service-integration-gitops/api/v1alpha1"
+	"github.com/openmcp-project/platform-service-integration-gitops/test/e2e/mock"
 )
 
 func TestGitLabOAuthGenerateToken(t *testing.T) {

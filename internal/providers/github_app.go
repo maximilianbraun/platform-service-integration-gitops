@@ -25,8 +25,8 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	integrationsv1alpha1 "github.com/openmcp-project/platform-service-git-connection/api/v1alpha1"
-	gh "github.com/openmcp-project/platform-service-git-connection/internal/providers/github"
+	integrationsv1alpha1 "github.com/openmcp-project/platform-service-integration-gitops/api/v1alpha1"
+	gh "github.com/openmcp-project/platform-service-integration-gitops/internal/providers/github"
 )
 
 // GitHubAppTokenProvider implements TokenProvider for GitHub App authentication.

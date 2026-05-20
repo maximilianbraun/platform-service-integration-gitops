@@ -26,7 +26,7 @@ The desired outcome: a user creates a `GitConnection` resource at their workspac
 
 ### 1. Service Architecture
 
-* **A) Standalone platform service** (`platform-service-git-connection`) — follows existing service patterns (`platform-service-gateway`, `platform-service-dns`)
+* **A) Standalone platform service** (`platform-service-integration-gitops`) — follows existing service patterns (`platform-service-gateway`, `platform-service-dns`)
 * **B) Embedded in `platform-service-project-workspace`** — extend existing project/workspace controller with git connection logic
 
 ### 2. Provider Abstraction Model

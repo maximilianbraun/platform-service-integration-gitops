@@ -33,8 +33,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	integrationsv1alpha1 "github.com/openmcp-project/platform-service-git-connection/api/v1alpha1"
-	"github.com/openmcp-project/platform-service-git-connection/internal/providers"
+	integrationsv1alpha1 "github.com/openmcp-project/platform-service-integration-gitops/api/v1alpha1"
+	"github.com/openmcp-project/platform-service-integration-gitops/internal/providers"
 
 	corev2alpha1 "github.com/openmcp-project/openmcp-operator/api/core/v2alpha1"
 )

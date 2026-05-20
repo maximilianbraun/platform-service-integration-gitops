@@ -33,7 +33,7 @@ func TestMain(m *testing.M) {
 		ServiceProviders: []providers.ServiceProviderSetup{
 			{
 				Name:               "git-connection",
-				Image:              fmt.Sprintf("ghcr.io/openmcp-project/images/platform-service-git-connection:%s", version),
+				Image:              fmt.Sprintf("ghcr.io/openmcp-project/images/platform-service-integration-gitops:%s", version),
 				LoadImageToCluster: true,
 			},
 		},

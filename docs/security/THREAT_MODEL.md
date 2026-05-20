@@ -1,4 +1,4 @@
-# Threat Model: platform-service-git-connection
+# Threat Model: platform-service-integration-gitops
 
 ## 1. System Overview
 

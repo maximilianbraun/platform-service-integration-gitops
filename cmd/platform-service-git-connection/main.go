@@ -33,10 +33,10 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
 	corev2alpha1 "github.com/openmcp-project/openmcp-operator/api/core/v2alpha1"
-	integrationsv1alpha1 "github.com/openmcp-project/platform-service-git-connection/api/v1alpha1"
-	"github.com/openmcp-project/platform-service-git-connection/internal/controller"
-	"github.com/openmcp-project/platform-service-git-connection/internal/providers"
-	"github.com/openmcp-project/platform-service-git-connection/internal/webhook"
+	integrationsv1alpha1 "github.com/openmcp-project/platform-service-integration-gitops/api/v1alpha1"
+	"github.com/openmcp-project/platform-service-integration-gitops/internal/controller"
+	"github.com/openmcp-project/platform-service-integration-gitops/internal/providers"
+	"github.com/openmcp-project/platform-service-integration-gitops/internal/webhook"
 	// +kubebuilder:scaffold:imports
 )
 

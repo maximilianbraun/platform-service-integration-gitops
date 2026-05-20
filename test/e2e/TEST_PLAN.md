@@ -1,4 +1,4 @@
-# E2E Test Plan: platform-service-git-connection
+# E2E Test Plan: platform-service-integration-gitops
 
 ## Overview
 
@@ -24,7 +24,7 @@ This document defines the end-to-end test strategy for the GitConnection platfor
 
 - Local environment provisioned via `ocpctl environments apply e2e-git` (kind-based)
 - Platform cluster with `openmcp-operator` installed
-- `platform-service-git-connection` controller deployed
+- `platform-service-integration-gitops` controller deployed
 - At least one ClusterProvider (kind) registered
 
 ### Kubernetes Clients

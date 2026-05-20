@@ -2,7 +2,7 @@
 
 ## Overview
 
-The git-connection webhook is the same `platform-service-git-connection` binary running with `--mode=webhook`. It runs on each MCP as a mutating admission webhook, intercepting `GitRepository`, `OCIRepository`, and `Provider` resources to inject URLs and secret references based on `GitConnection` configuration.
+The git-connection webhook is the same `platform-service-integration-gitops` binary running with `--mode=webhook`. It runs on each MCP as a mutating admission webhook, intercepting `GitRepository`, `OCIRepository`, and `Provider` resources to inject URLs and secret references based on `GitConnection` configuration.
 
 The webhook is deployed to MCPs via a **HelmRelease on the platform cluster**. Flux running on the platform cluster reconciles the HelmRelease and installs the webhook remotely onto the target MCP using a kubeconfig secret.
 
@@ -72,7 +72,7 @@ spec:
       strategy: Rollback
   values:
     image:
-      repository: ghcr.io/openmcp-project/platform-service-git-connection
+      repository: ghcr.io/openmcp-project/platform-service-integration-gitops
       tag: "0.1.0"
     replicaCount: 2
 ```
@@ -103,7 +103,7 @@ spec:
     spec:
       containers:
         - name: webhook
-          image: ghcr.io/openmcp-project/platform-service-git-connection:<tag>
+          image: ghcr.io/openmcp-project/platform-service-integration-gitops:<tag>
           args:
             - --mode=webhook
             - --webhook-port=9443
@@ -189,7 +189,7 @@ If cert-manager is not available, the controller pre-generates a self-signed CA 
 
 The HelmRelease is updated when:
 
-1. **New service version** -- When the `platform-service-git-connection` image tag changes (e.g., new release deployed), the OCIRepository detects the new chart version and Flux upgrades the HelmRelease.
+1. **New service version** -- When the `platform-service-integration-gitops` image tag changes (e.g., new release deployed), the OCIRepository detects the new chart version and Flux upgrades the HelmRelease.
 2. **Chart values change** -- If the controller updates HelmRelease values (replica count, resource limits, image tag), Flux reconciles the change onto the MCP.
 3. **Periodic reconciliation** -- Flux re-checks at the configured interval (default 10m) that the deployed state matches the desired state.
 
@@ -262,7 +262,7 @@ GitConnection                   mcp--<hash> namespace
 
 | Aspect | Detail |
 |--------|--------|
-| Binary | `platform-service-git-connection --mode=webhook` |
+| Binary | `platform-service-integration-gitops --mode=webhook` |
 | Deployment mechanism | HelmRelease on platform cluster, Flux installs remotely |
 | Trigger | First successful GitConnection reconcile for an MCP's scope |
 | Location (platform) | Tenant namespace `mcp--<hash>` |
