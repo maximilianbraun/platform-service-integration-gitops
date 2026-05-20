@@ -1,6 +1,6 @@
 # platform-service-integration-gitops
 
-> Yes, `integration-service-gitops` would have been the better name. We'll get it right in v2.
+> Yes, `integration-service-gitops` would have been the better name. Lets stick to the patterns for now.
 
 A platform service for OpenMCP that provides project/workspace-scoped Git connections with automatic token management and secret provisioning across Managed Control Planes. Users create a `GitConnection` resource referencing their git hosting organization, and the controller handles token generation, rotation, and multi-MCP secret sync — no per-MCP manual secret management required.
 
