@@ -1,0 +1,26 @@
+# GitProvider for GitLab using OAuth client credentials.
+#
+# Use this when your GitLab instance supports OAuth application-based access.
+# The controller exchanges client credentials for short-lived tokens.
+apiVersion: integrations.open-control-plane.io/v1alpha1
+kind: GitProvider
+metadata:
+  name: gitlab-corp
+spec:
+  # Self-hosted GitLab hostname (or "gitlab.com" for SaaS).
+  host: "gitlab.corp.example.com"
+
+  # Authentication mechanism.
+  type: GitLabOAuth
+
+  # GitLab OAuth configuration. Required when type is GitLabOAuth.
+  gitlabOAuth:
+    # The application ID from GitLab Admin > Applications.
+    applicationId: "a1b2c3d4e5f6"
+    # Reference to the secret containing the client secret.
+    secretRef:
+      name: gitlab-oauth-credentials
+      namespace: openmcp-system
+
+  tokenRefresh:
+    refreshBeforeExpiry: "5m"

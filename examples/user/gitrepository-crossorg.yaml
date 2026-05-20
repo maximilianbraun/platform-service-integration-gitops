@@ -1,0 +1,23 @@
+# GitRepository with org override annotation.
+#
+# Use the gitops-org annotation when accessing a repository outside the
+# connection's default organization. The GitHub App (or other provider)
+# must have access to the target org for this to work.
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: shared-base
+  namespace: flux-system
+  annotations:
+    # Reference a named connection (not primary).
+    integrations.open-control-plane.io/gitops-connection: my-org
+    # The repository name in the overridden org.
+    integrations.open-control-plane.io/gitops-repo: base-configs
+    # Override the default org from the connection.
+    # Webhook constructs: https://github.com/shared-infra-org/base-configs
+    integrations.open-control-plane.io/gitops-org: shared-infra-org
+spec:
+  interval: 10m
+  url: changeme
+  ref:
+    branch: main

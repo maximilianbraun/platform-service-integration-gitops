@@ -1,0 +1,30 @@
+# GitProvider for github.com using a GitHub App.
+#
+# Platform operators create one GitProvider per git hosting backend.
+# This example registers github.com with GitHub App authentication.
+# The referenced secret must contain the App's private key (see github-app-secret.yaml).
+apiVersion: integrations.open-control-plane.io/v1alpha1
+kind: GitProvider
+metadata:
+  # Convention: use the hostname with dots replaced by dashes, or a short alias.
+  name: github-com
+spec:
+  # The hostname of the git hosting provider.
+  host: "github.com"
+
+  # Authentication mechanism. One of: GitHubApp, GitLabOAuth, GitLabGroupToken.
+  type: GitHubApp
+
+  # GitHub App configuration. Required when type is GitHubApp.
+  githubApp:
+    # The numeric App ID from your GitHub App settings page.
+    appId: 987654
+    # Reference to the secret containing the PEM-encoded private key.
+    privateKeySecretRef:
+      name: github-app-key
+      namespace: openmcp-system
+
+  # Token refresh configuration (optional).
+  tokenRefresh:
+    # Refresh tokens this long before they expire. Default: 10m.
+    refreshBeforeExpiry: "10m"

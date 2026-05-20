@@ -1,0 +1,23 @@
+# OCIRepository using git connection for container registry auth.
+#
+# The controller provisions a dockerconfigjson-format secret for OCI resources.
+# The webhook injects the registry URL and secretRef automatically.
+# Uses the same GitConnection — the provider generates the correct token format
+# based on the resource kind (basic-auth for git, dockerconfigjson for OCI).
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: app-manifests
+  namespace: flux-system
+  annotations:
+    # Same connection annotation — the controller detects OCI and uses the
+    # appropriate secret format (kubernetes.io/dockerconfigjson).
+    integrations.open-control-plane.io/gitops-connection: my-org
+    integrations.open-control-plane.io/gitops-repo: app-manifests
+spec:
+  interval: 5m
+  # Placeholder — webhook rewrites to oci://<registry-host>/<org>/<repo>
+  url: changeme
+  ref:
+    tag: latest
+  # secretRef injected by webhook (git-connection-<name>-oci).

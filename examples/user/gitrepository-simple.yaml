@@ -1,0 +1,26 @@
+# GitRepository using the primary connection.
+#
+# This is applied on an MCP (Managed Control Plane).
+# The mutating webhook handles:
+#   1. Rewriting spec.url to https://<host>/<org>/<repo>
+#   2. Injecting spec.secretRef with the managed token secret
+#
+# The user only provides the repo name via annotation — no URLs or secrets needed.
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: infra
+  namespace: flux-system
+  annotations:
+    # "auto" = use the primary GitConnection in this workspace.
+    # Use an explicit connection name (e.g. "my-org") for select mode.
+    integrations.open-control-plane.io/gitops-connection: auto
+    # The repository name (not the full URL).
+    integrations.open-control-plane.io/gitops-repo: infra-manifests
+spec:
+  interval: 5m
+  # Placeholder — the webhook overwrites this with the full URL.
+  url: changeme
+  ref:
+    branch: main
+  # secretRef is injected by the webhook (git-connection-<connection-name>).

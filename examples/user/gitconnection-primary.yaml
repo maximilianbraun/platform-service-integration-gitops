@@ -1,0 +1,26 @@
+# Primary GitConnection for a workspace.
+#
+# This is the most common setup: one connection per workspace, marked as primary.
+# Resources on MCPs can reference it with:
+#   integrations.open-control-plane.io/gitops-connection: auto
+#
+# The controller automatically resolves the GitHub App installation ID
+# by matching the organization name — no provider-specific config needed.
+apiVersion: integrations.open-control-plane.io/v1alpha1
+kind: GitConnection
+metadata:
+  # Name is typically the organization/group name for clarity.
+  name: my-org
+  # Lives in the workspace namespace (project--workspace format).
+  namespace: project-platform-team--ws-dev
+spec:
+  # Reference to the cluster-scoped GitProvider that handles authentication.
+  providerRef: github-com
+
+  # The organization name on the git host. The controller resolves all
+  # provider-specific details (installation ID, etc.) from this.
+  organization: "my-org"
+
+  # Mark as the default connection for this namespace.
+  # Resources with gitops-connection: "auto" will use this one.
+  primary: true

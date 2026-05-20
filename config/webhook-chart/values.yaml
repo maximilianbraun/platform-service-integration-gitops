@@ -1,0 +1,29 @@
+replicaCount: 2
+
+image:
+  repository: ghcr.io/openmcp-project/platform-service-git-connection
+  tag: ""
+  pullPolicy: IfNotPresent
+
+webhook:
+  port: 9443
+  certDir: /tmp/k8s-webhook-server/serving-certs
+
+metrics:
+  port: 8080
+
+healthProbe:
+  port: 8081
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+serviceAccount:
+  name: git-connection-webhook
+
+namespace: flux-system

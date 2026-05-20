@@ -1,0 +1,23 @@
+# GitProvider for GitLab using a static group access token.
+#
+# Use this for GitLab instances where OAuth is unavailable or when a long-lived
+# group/project token is acceptable. The token is used directly (no exchange).
+# Token rotation is manual — update the referenced secret when the token is rotated.
+apiVersion: integrations.open-control-plane.io/v1alpha1
+kind: GitProvider
+metadata:
+  name: gitlab-internal
+spec:
+  # GitLab instance hostname.
+  host: "gitlab.internal.example.com"
+
+  # Authentication mechanism.
+  type: GitLabGroupToken
+
+  # GitLab group token configuration. Required when type is GitLabGroupToken.
+  gitlabGroupToken:
+    # Reference to the secret containing the group/project access token.
+    # The secret must have a key named "token".
+    tokenSecretRef:
+      name: gitlab-group-token
+      namespace: openmcp-system

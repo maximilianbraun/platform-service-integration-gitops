@@ -1,0 +1,24 @@
+# Named GitConnection (non-primary).
+#
+# Use when a workspace needs access to multiple git organizations.
+# Resources must reference this connection by name in their annotation:
+#   integrations.open-control-plane.io/gitops-connection: shared-infra
+#
+# Only one connection per namespace can be primary; additional ones are named.
+apiVersion: integrations.open-control-plane.io/v1alpha1
+kind: GitConnection
+metadata:
+  name: shared-infra
+  namespace: project-platform-team--ws-dev
+spec:
+  providerRef: github-com
+  organization: "shared-infra-org"
+
+  # Not primary — must be referenced by name in annotations.
+  primary: false
+
+  # Optional: restrict the token to specific repositories only.
+  # If omitted, the token has access to all repos the App can see in this org.
+  repositories:
+    - "base-configs"
+    - "shared-modules"

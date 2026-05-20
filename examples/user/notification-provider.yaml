@@ -1,0 +1,21 @@
+# Flux notification Provider for GitHub commit status.
+#
+# Posts commit status checks back to GitHub when Flux reconciliations
+# succeed or fail. The webhook injects the secretRef containing the token.
+# The address field is set to the repo URL by the webhook.
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: github-status
+  namespace: flux-system
+  annotations:
+    # Connection to use for authentication.
+    integrations.open-control-plane.io/gitops-connection: my-org
+    # Repository to post commit statuses to.
+    integrations.open-control-plane.io/gitops-repo: infra-manifests
+spec:
+  # Provider type for commit status reporting.
+  type: github
+  # Placeholder — webhook rewrites to the repository URL.
+  address: changeme
+  # secretRef injected by webhook (token format for notification providers).

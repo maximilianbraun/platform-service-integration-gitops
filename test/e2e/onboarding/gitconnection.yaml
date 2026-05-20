@@ -1,0 +1,10 @@
+---
+apiVersion: integrations.open-control-plane.io/v1alpha1
+kind: GitConnection
+metadata:
+  name: e2e-org
+  namespace: project-e2e--ws-dev
+spec:
+  providerRef: github-com
+  organization: "${E2E_TEST_ORG_INSTALLED}"
+  primary: true

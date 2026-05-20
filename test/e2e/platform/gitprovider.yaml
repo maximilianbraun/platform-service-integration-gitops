@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: github-app-key-e2e
+  namespace: openmcp-system
+type: Opaque
+stringData:
+  private-key.pem: "${E2E_GITHUB_APP_PRIVATE_KEY}"
+---
+apiVersion: integrations.open-control-plane.io/v1alpha1
+kind: GitProvider
+metadata:
+  name: github-com
+spec:
+  host: "github.com"
+  type: GitHubApp
+  githubApp:
+    appId: ${E2E_GITHUB_APP_ID}
+    privateKeySecretRef:
+      name: github-app-key-e2e
+      namespace: openmcp-system
+  tokenRefresh:
+    refreshBeforeExpiry: "5m"

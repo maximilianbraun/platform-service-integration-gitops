@@ -1,0 +1,14 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: e2e-test-repo
+  namespace: flux-system
+  annotations:
+    integrations.open-control-plane.io/gitops-connection: e2e-org
+    integrations.open-control-plane.io/gitops-repo: "${E2E_TEST_REPO}"
+spec:
+  interval: 5m
+  url: changeme
+  ref:
+    branch: main

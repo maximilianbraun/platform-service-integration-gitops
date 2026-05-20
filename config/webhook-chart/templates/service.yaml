@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: git-connection-webhook
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: git-connection-webhook
+spec:
+  ports:
+    - port: 443
+      targetPort: webhook
+      protocol: TCP
+      name: webhook
+  selector:
+    app.kubernetes.io/name: git-connection-webhook

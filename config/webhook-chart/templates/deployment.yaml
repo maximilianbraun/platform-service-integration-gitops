@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: git-connection-webhook
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: git-connection-webhook
+    app.kubernetes.io/component: webhook
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: git-connection-webhook
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: git-connection-webhook
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+        - name: webhook
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --mode=webhook
+            - --webhook-port={{ .Values.webhook.port }}
+            - --cert-dir={{ .Values.webhook.certDir }}
+            - --metrics-bind-address=:{{ .Values.metrics.port }}
+            - --health-probe-bind-address=:{{ .Values.healthProbe.port }}
+          ports:
+            - name: webhook
+              containerPort: {{ .Values.webhook.port }}
+              protocol: TCP
+            - name: metrics
+              containerPort: {{ .Values.metrics.port }}
+              protocol: TCP
+            - name: health
+              containerPort: {{ .Values.healthProbe.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: health
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: health
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: cert
+              mountPath: {{ .Values.webhook.certDir }}
+              readOnly: true
+      volumes:
+        - name: cert
+          secret:
+            secretName: git-connection-webhook-tls
