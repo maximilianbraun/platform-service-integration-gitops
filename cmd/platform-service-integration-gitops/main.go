@@ -53,17 +53,30 @@ func init() {
 }
 
 func main() {
+	// The openmcp-operator invokes service providers with a "run" subcommand.
+	// Strip it if present so pflag can parse the remaining flags.
+	if len(os.Args) > 1 && os.Args[1] == "run" {
+		os.Args = append(os.Args[:1], os.Args[2:]...)
+	}
+
 	var mode string
 	var metricsAddr string
 	var probeAddr string
 	var webhookPort int
 	var certDir string
+	var environment string
+	var verbosity string
+	var providerName string
 
 	flag.StringVar(&mode, "mode", "platform", "Run mode: 'platform' (controllers) or 'webhook' (mutating webhook only)")
 	flag.StringVar(&metricsAddr, "metrics-bind-address", ":8080", "The address the metrics endpoint binds to.")
 	flag.StringVar(&probeAddr, "health-probe-bind-address", ":8081", "The address the probe endpoint binds to.")
 	flag.IntVar(&webhookPort, "webhook-port", 9443, "The port the webhook server binds to.")
 	flag.StringVar(&certDir, "cert-dir", "/tmp/k8s-webhook-server/serving-certs", "Directory containing TLS certs for the webhook server.")
+	// Flags injected by the openmcp-operator (accepted but not all used)
+	flag.StringVar(&environment, "environment", "", "Environment name (injected by openmcp-operator)")
+	flag.StringVar(&verbosity, "verbosity", "INFO", "Log verbosity (injected by openmcp-operator)")
+	flag.StringVar(&providerName, "provider-name", "", "Provider name (injected by openmcp-operator)")
 
 	opts := zap.Options{Development: true}
 	flag.Parse()
