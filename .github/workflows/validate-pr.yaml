@@ -1,0 +1,38 @@
+name: Validate PR
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+permissions:
+  contents: read
+
+jobs:
+  verify-generated:
+    name: Verify Generated Code
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Install controller-gen
+        run: go install sigs.k8s.io/controller-tools/cmd/controller-gen@latest
+
+      - name: Regenerate
+        run: |
+          controller-gen object paths=./api/...
+          controller-gen crd paths=./api/... output:crd:dir=config/crd/bases
+
+      - name: Check for diff
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Generated files are out of date. Run 'make manifests' and commit."
+            git diff
+            exit 1
+          fi

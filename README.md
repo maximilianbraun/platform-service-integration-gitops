@@ -75,8 +75,8 @@ metadata:
   name: infra
   namespace: flux-system
   annotations:
-    gitops.integrations.open-control-plane.io/gitops-connection: auto
-    gitops.integrations.open-control-plane.io/gitops-repo: infra-manifests
+    gitops.integrations.open-control-plane.io/connection: auto
+    gitops.integrations.open-control-plane.io/repository: infra-manifests
 spec:
   interval: 5m
   url: changeme

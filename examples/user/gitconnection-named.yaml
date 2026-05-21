@@ -2,7 +2,7 @@
 #
 # Use when a workspace needs access to multiple git organizations.
 # Resources must reference this connection by name in their annotation:
-#   gitops.integrations.open-control-plane.io/gitops-connection: shared-infra
+#   gitops.integrations.open-control-plane.io/connection: shared-infra
 #
 # Only one connection per namespace can be primary; additional ones are named.
 apiVersion: gitops.integrations.open-control-plane.io/v1alpha1

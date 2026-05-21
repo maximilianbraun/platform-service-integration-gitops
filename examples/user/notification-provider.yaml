@@ -10,9 +10,9 @@ metadata:
   namespace: flux-system
   annotations:
     # Connection to use for authentication.
-    gitops.integrations.open-control-plane.io/gitops-connection: my-org
+    gitops.integrations.open-control-plane.io/connection: my-org
     # Repository to post commit statuses to.
-    gitops.integrations.open-control-plane.io/gitops-repo: infra-manifests
+    gitops.integrations.open-control-plane.io/repository: infra-manifests
 spec:
   # Provider type for commit status reporting.
   type: github

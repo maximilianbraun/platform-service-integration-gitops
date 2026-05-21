@@ -5,8 +5,8 @@ metadata:
   name: e2e-test-repo
   namespace: flux-system
   annotations:
-    gitops.integrations.open-control-plane.io/gitops-connection: e2e-org
-    gitops.integrations.open-control-plane.io/gitops-repo: "${E2E_TEST_REPO}"
+    gitops.integrations.open-control-plane.io/connection: e2e-org
+    gitops.integrations.open-control-plane.io/repository: "${E2E_TEST_REPO}"
 spec:
   interval: 5m
   url: changeme

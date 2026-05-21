@@ -10,12 +10,12 @@ metadata:
   namespace: flux-system
   annotations:
     # Reference a named connection (not primary).
-    gitops.integrations.open-control-plane.io/gitops-connection: my-org
+    gitops.integrations.open-control-plane.io/connection: my-org
     # The repository name in the overridden org.
-    gitops.integrations.open-control-plane.io/gitops-repo: base-configs
+    gitops.integrations.open-control-plane.io/repository: base-configs
     # Override the default org from the connection.
     # Webhook constructs: https://github.com/shared-infra-org/base-configs
-    gitops.integrations.open-control-plane.io/gitops-org: shared-infra-org
+    gitops.integrations.open-control-plane.io/organization: shared-infra-org
 spec:
   interval: 10m
   url: changeme

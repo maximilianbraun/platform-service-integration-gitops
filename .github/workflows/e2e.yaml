@@ -1,0 +1,26 @@
+name: E2E Tests
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    name: E2E Tests
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Build binary
+        run: go build -o bin/platform-service-integration-gitops ./cmd/platform-service-integration-gitops/
+
+      - name: Run E2E tests
+        run: go test -tags=e2e ./test/e2e/... -count=1 -v -timeout=15m
+        env:
+          E2E_VERSION: latest
