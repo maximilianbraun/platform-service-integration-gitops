@@ -33,19 +33,19 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	integrationsv1alpha1 "github.com/openmcp-project/platform-service-integration-gitops/api/v1alpha1"
-	"github.com/openmcp-project/platform-service-integration-gitops/internal/providers"
+	integrationsv1alpha1 "github.com/maximilianbraun/platform-service-integration-gitops/api/v1alpha1"
+	"github.com/maximilianbraun/platform-service-integration-gitops/internal/providers"
 
 	corev2alpha1 "github.com/openmcp-project/openmcp-operator/api/core/v2alpha1"
 )
 
 const (
-	connectionFinalizer   = "integrations.open-control-plane.io/connection-finalizer"
+	connectionFinalizer   = "gitops.integrations.open-control-plane.io/connection-finalizer"
 	secretPrefix          = "git-connection-"
 	configMapName         = "git-connections"
 	targetNamespace       = "flux-system"
-	managedByLabel        = "integrations.open-control-plane.io/managed-by"
-	connectionLabel       = "integrations.open-control-plane.io/connection"
+	managedByLabel        = "gitops.integrations.open-control-plane.io/managed-by"
+	connectionLabel       = "gitops.integrations.open-control-plane.io/connection"
 	pollIntervalNoInstall = 60 * time.Second
 )
 
@@ -60,8 +60,8 @@ type ConnectionReconciler struct {
 	Registry *providers.Registry
 }
 
-// +kubebuilder:rbac:groups=integrations.open-control-plane.io,resources=gitconnections,verbs=get;list;watch;update;patch
-// +kubebuilder:rbac:groups=integrations.open-control-plane.io,resources=gitconnections/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=gitops.integrations.open-control-plane.io,resources=gitconnections,verbs=get;list;watch;update;patch
+// +kubebuilder:rbac:groups=gitops.integrations.open-control-plane.io,resources=gitconnections/status,verbs=get;update;patch
 // +kubebuilder:rbac:groups=core.openmcp.cloud,resources=managedcontrolplanev2s,verbs=get;list;watch
 // +kubebuilder:rbac:groups="",resources=secrets;configmaps,verbs=get;list;watch;create;update;patch;delete
 // +kubebuilder:rbac:groups="",resources=events,verbs=create;patch

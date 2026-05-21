@@ -150,7 +150,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: flux-system/git-connection-webhook-tls
 webhooks:
-  - name: gitops.integrations.open-control-plane.io
+  - name: gitops.gitops.integrations.open-control-plane.io
     rules:
       - apiGroups: ["source.toolkit.fluxcd.io"]
         resources: ["gitrepositories", "ocirepositories"]
@@ -161,11 +161,11 @@ webhooks:
     failurePolicy: Fail
     objectSelector:
       matchExpressions:
-        - key: integrations.open-control-plane.io/skip-webhook
+        - key: gitops.integrations.open-control-plane.io/skip-webhook
           operator: DoesNotExist
 ```
 
-Resources with the label `integrations.open-control-plane.io/skip-webhook` bypass mutation.
+Resources with the label `gitops.integrations.open-control-plane.io/skip-webhook` bypass mutation.
 
 ### RBAC
 

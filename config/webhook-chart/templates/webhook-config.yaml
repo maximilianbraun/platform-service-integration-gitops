@@ -5,7 +5,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: {{ .Values.namespace }}/git-connection-webhook-tls
 webhooks:
-  - name: gitops.integrations.open-control-plane.io
+  - name: gitops.gitops.integrations.open-control-plane.io
     admissionReviewVersions: ["v1"]
     sideEffects: None
     clientConfig:
@@ -26,5 +26,5 @@ webhooks:
     matchPolicy: Equivalent
     objectSelector:
       matchExpressions:
-        - key: integrations.open-control-plane.io/skip-webhook
+        - key: gitops.integrations.open-control-plane.io/skip-webhook
           operator: DoesNotExist

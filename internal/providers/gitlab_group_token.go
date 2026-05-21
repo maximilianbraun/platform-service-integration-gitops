@@ -28,7 +28,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	integrationsv1alpha1 "github.com/openmcp-project/platform-service-integration-gitops/api/v1alpha1"
+	integrationsv1alpha1 "github.com/maximilianbraun/platform-service-integration-gitops/api/v1alpha1"
 )
 
 // GitLabGroupTokenProvider implements TokenProvider for static GitLab group/project access tokens.

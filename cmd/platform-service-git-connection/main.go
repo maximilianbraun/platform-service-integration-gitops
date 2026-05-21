@@ -33,10 +33,10 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
 	corev2alpha1 "github.com/openmcp-project/openmcp-operator/api/core/v2alpha1"
-	integrationsv1alpha1 "github.com/openmcp-project/platform-service-integration-gitops/api/v1alpha1"
-	"github.com/openmcp-project/platform-service-integration-gitops/internal/controller"
-	"github.com/openmcp-project/platform-service-integration-gitops/internal/providers"
-	"github.com/openmcp-project/platform-service-integration-gitops/internal/webhook"
+	integrationsv1alpha1 "github.com/maximilianbraun/platform-service-integration-gitops/api/v1alpha1"
+	"github.com/maximilianbraun/platform-service-integration-gitops/internal/controller"
+	"github.com/maximilianbraun/platform-service-integration-gitops/internal/providers"
+	"github.com/maximilianbraun/platform-service-integration-gitops/internal/webhook"
 	// +kubebuilder:scaffold:imports
 )
 
@@ -87,7 +87,7 @@ func runPlatformControllers(metricsAddr, probeAddr string) {
 		Metrics:                metricsserver.Options{BindAddress: metricsAddr},
 		HealthProbeBindAddress: probeAddr,
 		LeaderElection:         false,
-		LeaderElectionID:       "git-connection.integrations.open-control-plane.io",
+		LeaderElectionID:       "git-connection.gitops.integrations.open-control-plane.io",
 	})
 	if err != nil {
 		setupLog.Error(err, "unable to start manager")

@@ -34,7 +34,7 @@ GitConnection ──watch──►  Connection Controller
 ### 1. Platform Operator: Register a Git Provider
 
 ```yaml
-apiVersion: integrations.open-control-plane.io/v1alpha1
+apiVersion: gitops.integrations.open-control-plane.io/v1alpha1
 kind: GitProvider
 metadata:
   name: github-com
@@ -53,7 +53,7 @@ See [`examples/platform/`](examples/platform/) for provider and secret templates
 ### 2. End User: Create a GitConnection
 
 ```yaml
-apiVersion: integrations.open-control-plane.io/v1alpha1
+apiVersion: gitops.integrations.open-control-plane.io/v1alpha1
 kind: GitConnection
 metadata:
   name: my-org
@@ -75,8 +75,8 @@ metadata:
   name: infra
   namespace: flux-system
   annotations:
-    integrations.open-control-plane.io/gitops-connection: auto
-    integrations.open-control-plane.io/gitops-repo: infra-manifests
+    gitops.integrations.open-control-plane.io/gitops-connection: auto
+    gitops.integrations.open-control-plane.io/gitops-repo: infra-manifests
 spec:
   interval: 5m
   url: changeme

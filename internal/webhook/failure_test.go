@@ -46,8 +46,8 @@ func TestHandle_ConfigMapNotFound(t *testing.T) {
 			"name":      "test",
 			"namespace": "flux-system",
 			"annotations": map[string]interface{}{
-				"integrations.open-control-plane.io/gitops-connection": "my-org",
-				"integrations.open-control-plane.io/gitops-repo":       "my-repo",
+				"gitops.integrations.open-control-plane.io/gitops-connection": "my-org",
+				"gitops.integrations.open-control-plane.io/gitops-repo":       "my-repo",
 			},
 		},
 		"spec": map[string]interface{}{
@@ -86,8 +86,8 @@ func TestHandle_ConfigMapEmpty(t *testing.T) {
 			"name":      "test",
 			"namespace": "flux-system",
 			"annotations": map[string]interface{}{
-				"integrations.open-control-plane.io/gitops-connection": "my-org",
-				"integrations.open-control-plane.io/gitops-repo":       "my-repo",
+				"gitops.integrations.open-control-plane.io/gitops-connection": "my-org",
+				"gitops.integrations.open-control-plane.io/gitops-repo":       "my-repo",
 			},
 		},
 		"spec": map[string]interface{}{
@@ -127,8 +127,8 @@ func TestHandle_CorruptedConfigMapMissingHost(t *testing.T) {
 			"name":      "test",
 			"namespace": "flux-system",
 			"annotations": map[string]interface{}{
-				"integrations.open-control-plane.io/gitops-connection": "my-org",
-				"integrations.open-control-plane.io/gitops-repo":       "my-repo",
+				"gitops.integrations.open-control-plane.io/gitops-connection": "my-org",
+				"gitops.integrations.open-control-plane.io/gitops-repo":       "my-repo",
 			},
 		},
 		"spec": map[string]interface{}{
@@ -207,8 +207,8 @@ func TestHandle_EmptyRepoAnnotation(t *testing.T) {
 			"name":      "test",
 			"namespace": "flux-system",
 			"annotations": map[string]interface{}{
-				"integrations.open-control-plane.io/gitops-connection": "my-org",
-				"integrations.open-control-plane.io/gitops-repo":       "", // empty!
+				"gitops.integrations.open-control-plane.io/gitops-connection": "my-org",
+				"gitops.integrations.open-control-plane.io/gitops-repo":       "", // empty!
 			},
 		},
 		"spec": map[string]interface{}{
@@ -248,8 +248,8 @@ func TestHandle_SpecialCharsInRepoName(t *testing.T) {
 			"name":      "test",
 			"namespace": "flux-system",
 			"annotations": map[string]interface{}{
-				"integrations.open-control-plane.io/gitops-connection": "my-org",
-				"integrations.open-control-plane.io/gitops-repo":       "../../../etc/passwd",
+				"gitops.integrations.open-control-plane.io/gitops-connection": "my-org",
+				"gitops.integrations.open-control-plane.io/gitops-repo":       "../../../etc/passwd",
 			},
 		},
 		"spec": map[string]interface{}{

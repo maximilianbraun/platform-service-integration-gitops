@@ -1,4 +1,4 @@
-module github.com/openmcp-project/platform-service-integration-gitops
+module github.com/maximilianbraun/platform-service-integration-gitops
 
 go 1.26.1
 

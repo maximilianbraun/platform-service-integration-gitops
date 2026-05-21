@@ -3,7 +3,7 @@
 # Use this for GitLab instances where OAuth is unavailable or when a long-lived
 # group/project token is acceptable. The token is used directly (no exchange).
 # Token rotation is manual — update the referenced secret when the token is rotated.
-apiVersion: integrations.open-control-plane.io/v1alpha1
+apiVersion: gitops.integrations.open-control-plane.io/v1alpha1
 kind: GitProvider
 metadata:
   name: gitlab-internal

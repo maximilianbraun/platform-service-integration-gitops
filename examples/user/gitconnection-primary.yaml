@@ -2,11 +2,11 @@
 #
 # This is the most common setup: one connection per workspace, marked as primary.
 # Resources on MCPs can reference it with:
-#   integrations.open-control-plane.io/gitops-connection: auto
+#   gitops.integrations.open-control-plane.io/gitops-connection: auto
 #
 # The controller automatically resolves the GitHub App installation ID
 # by matching the organization name — no provider-specific config needed.
-apiVersion: integrations.open-control-plane.io/v1alpha1
+apiVersion: gitops.integrations.open-control-plane.io/v1alpha1
 kind: GitConnection
 metadata:
   # Name is typically the organization/group name for clarity.

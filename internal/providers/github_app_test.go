@@ -35,8 +35,8 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	integrationsv1alpha1 "github.com/openmcp-project/platform-service-integration-gitops/api/v1alpha1"
-	gh "github.com/openmcp-project/platform-service-integration-gitops/internal/providers/github"
+	integrationsv1alpha1 "github.com/maximilianbraun/platform-service-integration-gitops/api/v1alpha1"
+	gh "github.com/maximilianbraun/platform-service-integration-gitops/internal/providers/github"
 )
 
 func generateTestKey() (*rsa.PrivateKey, []byte) {

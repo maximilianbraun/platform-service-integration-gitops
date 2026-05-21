@@ -182,7 +182,7 @@ The Git Connection service provides platform-managed authentication for Flux and
 | **Sync radius** | Controller ONLY syncs secrets/ConfigMap entries to MCPs within the connection's namespace scope. An MCP in `project-B--ws-prod` never receives secrets for connections in `project-A--ws-dev`. |
 | **Webhook rejection** | Webhook checks local ConfigMap; if connection name is absent, admission is denied with a clear error. |
 | **Namespace isolation** | GitConnection names are unique per-namespace (K8s guarantee). Same-named connections in different namespaces produce independent, isolated secrets. |
-| **Label-based garbage collection** | Controller owns secrets with `integrations.open-control-plane.io/managed-by` label. Manually created fakes without correct labels are garbage-collected. |
+| **Label-based garbage collection** | Controller owns secrets with `gitops.integrations.open-control-plane.io/managed-by` label. Manually created fakes without correct labels are garbage-collected. |
 
 ### RBAC (E-1, E-4, T-3)
 

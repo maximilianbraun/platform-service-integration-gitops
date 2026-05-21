@@ -2,7 +2,7 @@
 #
 # Use this when your GitLab instance supports OAuth application-based access.
 # The controller exchanges client credentials for short-lived tokens.
-apiVersion: integrations.open-control-plane.io/v1alpha1
+apiVersion: gitops.integrations.open-control-plane.io/v1alpha1
 kind: GitProvider
 metadata:
   name: gitlab-corp

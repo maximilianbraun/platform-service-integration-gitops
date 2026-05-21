@@ -200,7 +200,7 @@ func assessAppNotInstalled(ctx context.Context, t *testing.T, c *envconf.Config)
 	}
 
 	conn := &unstructured.Unstructured{}
-	conn.SetAPIVersion("integrations.open-control-plane.io/v1alpha1")
+	conn.SetAPIVersion("gitops.integrations.open-control-plane.io/v1alpha1")
 	conn.SetKind("GitConnection")
 	conn.SetName("no-app-org")
 	conn.SetNamespace("project-e2e--ws-dev")

@@ -33,11 +33,11 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	integrationsv1alpha1 "github.com/openmcp-project/platform-service-integration-gitops/api/v1alpha1"
+	integrationsv1alpha1 "github.com/maximilianbraun/platform-service-integration-gitops/api/v1alpha1"
 )
 
 const (
-	providerFinalizer       = "integrations.open-control-plane.io/provider-finalizer"
+	providerFinalizer       = "gitops.integrations.open-control-plane.io/provider-finalizer"
 	conditionCredentialsValid = "CredentialsValid"
 	privateKeyField         = "private-key.pem"
 	requeueInterval         = 5 * time.Minute
@@ -48,8 +48,8 @@ type ProviderReconciler struct {
 	client.Client
 }
 
-// +kubebuilder:rbac:groups=integrations.open-control-plane.io,resources=gitproviders,verbs=get;list;watch;update;patch
-// +kubebuilder:rbac:groups=integrations.open-control-plane.io,resources=gitproviders/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=gitops.integrations.open-control-plane.io,resources=gitproviders,verbs=get;list;watch;update;patch
+// +kubebuilder:rbac:groups=gitops.integrations.open-control-plane.io,resources=gitproviders/status,verbs=get;update;patch
 // +kubebuilder:rbac:groups="",resources=secrets,verbs=get;list;watch
 // +kubebuilder:rbac:groups="",resources=events,verbs=create;patch
 

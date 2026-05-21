@@ -26,8 +26,8 @@ package sync
 // Key design aspects:
 // - Secrets use deterministic names: "git-connection-<connection-name>"
 // - Secrets are labeled with:
-//   - integrations.open-control-plane.io/managed-by: "true"
-//   - integrations.open-control-plane.io/connection: <connection-name>
+//   - gitops.integrations.open-control-plane.io/managed-by: "true"
+//   - gitops.integrations.open-control-plane.io/connection: <connection-name>
 // - Garbage collection: secrets with platform labels that are not managed by any
 //   GitConnection are deleted on reconcile
 // - Scope enforcement: secrets are only synced to MCPs within the connection's

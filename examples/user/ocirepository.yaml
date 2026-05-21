@@ -12,8 +12,8 @@ metadata:
   annotations:
     # Same connection annotation — the controller detects OCI and uses the
     # appropriate secret format (kubernetes.io/dockerconfigjson).
-    integrations.open-control-plane.io/gitops-connection: my-org
-    integrations.open-control-plane.io/gitops-repo: app-manifests
+    gitops.integrations.open-control-plane.io/gitops-connection: my-org
+    gitops.integrations.open-control-plane.io/gitops-repo: app-manifests
 spec:
   interval: 5m
   # Placeholder — webhook rewrites to oci://<registry-host>/<org>/<repo>

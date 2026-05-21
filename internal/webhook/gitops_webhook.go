@@ -33,9 +33,9 @@ import (
 )
 
 const (
-	AnnotationConnection = "integrations.open-control-plane.io/gitops-connection"
-	AnnotationRepo       = "integrations.open-control-plane.io/gitops-repo"
-	AnnotationOrg        = "integrations.open-control-plane.io/gitops-org"
+	AnnotationConnection = "gitops.integrations.open-control-plane.io/gitops-connection"
+	AnnotationRepo       = "gitops.integrations.open-control-plane.io/gitops-repo"
+	AnnotationOrg        = "gitops.integrations.open-control-plane.io/gitops-org"
 
 	// ConnectionAuto is the special value for gitops-connection that triggers
 	// automatic resolution to the primary connection.

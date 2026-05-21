@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.21.0
-  name: gitproviders.integrations.open-control-plane.io
+  name: gitproviders.gitops.integrations.open-control-plane.io
 spec:
-  group: integrations.open-control-plane.io
+  group: gitops.integrations.open-control-plane.io
   names:
     kind: GitProvider
     listKind: GitProviderList

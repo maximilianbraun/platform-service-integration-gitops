@@ -1,4 +1,4 @@
-apiVersion: integrations.open-control-plane.io/v1alpha1
+apiVersion: gitops.integrations.open-control-plane.io/v1alpha1
 kind: GitConnection
 metadata:
   name: org-a

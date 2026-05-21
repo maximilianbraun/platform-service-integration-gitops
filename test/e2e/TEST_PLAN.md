@@ -69,7 +69,7 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
 1. Create Secret `github-app-key-e2e` in `openmcp-system` containing the test App's private key PEM
 2. Create a `GitProvider` resource:
    ```yaml
-   apiVersion: integrations.open-control-plane.io/v1alpha1
+   apiVersion: gitops.integrations.open-control-plane.io/v1alpha1
    kind: GitProvider
    metadata:
      name: github-com-e2e
@@ -124,7 +124,7 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
 5. Wait for MCP to be Ready
 6. Create a `GitConnection` in the workspace namespace:
    ```yaml
-   apiVersion: integrations.open-control-plane.io/v1alpha1
+   apiVersion: gitops.integrations.open-control-plane.io/v1alpha1
    kind: GitConnection
    metadata:
      name: org-a
@@ -146,8 +146,8 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
      name: e2e-test-repo
      namespace: flux-system
      annotations:
-       integrations.open-control-plane.io/gitops-connection: ""
-       integrations.open-control-plane.io/gitops-repo: test-repo
+       gitops.integrations.open-control-plane.io/gitops-connection: ""
+       gitops.integrations.open-control-plane.io/gitops-repo: test-repo
    spec:
      interval: 1m
      url: changeme
@@ -185,7 +185,7 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
 **Steps:**
 1. Create `GitConnection` referencing org `openmcp-e2e-org-b`:
    ```yaml
-   apiVersion: integrations.open-control-plane.io/v1alpha1
+   apiVersion: gitops.integrations.open-control-plane.io/v1alpha1
    kind: GitConnection
    metadata:
      name: org-b
@@ -247,8 +247,8 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
    ```yaml
    metadata:
      annotations:
-       integrations.open-control-plane.io/gitops-connection: org-a
-       integrations.open-control-plane.io/gitops-repo: test-repo
+       gitops.integrations.open-control-plane.io/gitops-connection: org-a
+       gitops.integrations.open-control-plane.io/gitops-repo: test-repo
    ```
 8. Expect webhook to REJECT the admission request with error message containing "not available in this control plane"
 
@@ -322,8 +322,8 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
    ```yaml
    metadata:
      annotations:
-       integrations.open-control-plane.io/gitops-connection: ""
-       integrations.open-control-plane.io/gitops-repo: test-repo
+       gitops.integrations.open-control-plane.io/gitops-connection: ""
+       gitops.integrations.open-control-plane.io/gitops-repo: test-repo
    ```
 7. Verify webhook mutates URL and injects secretRef
 8. Verify Flux clones successfully
@@ -354,8 +354,8 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
 4. On the MCP, apply a GitRepository with EMPTY connection annotation:
    ```yaml
    annotations:
-     integrations.open-control-plane.io/gitops-connection: ""
-     integrations.open-control-plane.io/gitops-repo: test-repo
+     gitops.integrations.open-control-plane.io/gitops-connection: ""
+     gitops.integrations.open-control-plane.io/gitops-repo: test-repo
    ```
 5. Verify webhook resolves to the primary connection:
    - `spec.url` contains the primary connection's org
@@ -363,8 +363,8 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
 6. Apply another GitRepository with EXPLICIT connection name:
    ```yaml
    annotations:
-     integrations.open-control-plane.io/gitops-connection: org-other
-     integrations.open-control-plane.io/gitops-repo: other-repo
+     gitops.integrations.open-control-plane.io/gitops-connection: org-other
+     gitops.integrations.open-control-plane.io/gitops-repo: other-repo
    ```
 7. Verify it resolves to `org-other`:
    - `spec.url` contains `org-other`'s org
@@ -414,9 +414,9 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
 1. Apply a GitRepository on the MCP with org override:
    ```yaml
    annotations:
-     integrations.open-control-plane.io/gitops-connection: org-a
-     integrations.open-control-plane.io/gitops-repo: cross-org-repo
-     integrations.open-control-plane.io/gitops-org: openmcp-e2e-org-shared
+     gitops.integrations.open-control-plane.io/gitops-connection: org-a
+     gitops.integrations.open-control-plane.io/gitops-repo: cross-org-repo
+     gitops.integrations.open-control-plane.io/gitops-org: openmcp-e2e-org-shared
    ```
 2. Verify webhook constructs URL using the override org:
    - `spec.url` == `https://github.com/openmcp-e2e-org-shared/cross-org-repo`
@@ -447,8 +447,8 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
 1. Apply GitRepository with connection annotation but WITHOUT `gitops-repo`:
    ```yaml
    annotations:
-     integrations.open-control-plane.io/gitops-connection: org-a
-     # missing: integrations.open-control-plane.io/gitops-repo
+     gitops.integrations.open-control-plane.io/gitops-connection: org-a
+     # missing: gitops.integrations.open-control-plane.io/gitops-repo
    ```
 2. Expect REJECTION with error mentioning "missing required annotation" and `gitops-repo`
 
@@ -458,8 +458,8 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
 1. Apply GitRepository referencing a non-existent connection:
    ```yaml
    annotations:
-     integrations.open-control-plane.io/gitops-connection: does-not-exist
-     integrations.open-control-plane.io/gitops-repo: test-repo
+     gitops.integrations.open-control-plane.io/gitops-connection: does-not-exist
+     gitops.integrations.open-control-plane.io/gitops-repo: test-repo
    ```
 2. Expect REJECTION with error: `GitConnection "does-not-exist" is not available in this control plane`
 3. Verify error message lists available connections
@@ -510,8 +510,8 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
      name: git-connection-fake
      namespace: flux-system
      labels:
-       integrations.open-control-plane.io/managed-by: "true"
-       integrations.open-control-plane.io/connection: fake
+       gitops.integrations.open-control-plane.io/managed-by: "true"
+       gitops.integrations.open-control-plane.io/connection: fake
    type: Opaque
    data:
      username: dGVzdA==
@@ -540,8 +540,8 @@ Alternative: `sigs.k8s.io/e2e-framework` (as used in `openmcp-testing/e2e/`) for
 1. Apply a GitRepository with a full URL (has scheme):
    ```yaml
    annotations:
-     integrations.open-control-plane.io/gitops-connection: org-a
-     integrations.open-control-plane.io/gitops-repo: test-repo
+     gitops.integrations.open-control-plane.io/gitops-connection: org-a
+     gitops.integrations.open-control-plane.io/gitops-repo: test-repo
    spec:
      url: https://github.com/openmcp-e2e-org-a/test-repo
    ```

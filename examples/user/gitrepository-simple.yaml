@@ -14,9 +14,9 @@ metadata:
   annotations:
     # "auto" = use the primary GitConnection in this workspace.
     # Use an explicit connection name (e.g. "my-org") for select mode.
-    integrations.open-control-plane.io/gitops-connection: auto
+    gitops.integrations.open-control-plane.io/gitops-connection: auto
     # The repository name (not the full URL).
-    integrations.open-control-plane.io/gitops-repo: infra-manifests
+    gitops.integrations.open-control-plane.io/gitops-repo: infra-manifests
 spec:
   interval: 5m
   # Placeholder — the webhook overwrites this with the full URL.
