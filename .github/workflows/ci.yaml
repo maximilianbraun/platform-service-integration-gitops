@@ -10,8 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: Build & Test
+  build_validate_test:
+    name: Build, Validate & Test
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -20,25 +20,16 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - name: Build
-        run: go build ./...
+      - uses: arduino/setup-task@v2
+        with:
+          version: 3.x
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Vet
-        run: go vet ./...
+      - name: Generate
+        run: task generate --verbose
+
+      - name: Validate
+        run: task validate --verbose
 
       - name: Unit Tests
-        run: go test ./... -count=1 -v
-
-  lint:
-    name: Lint
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-go@v5
-        with:
-          go-version-file: go.mod
-
-      - uses: golangci/golangci-lint-action@v6
-        with:
-          version: v2.1
+        run: task test --verbose

@@ -89,10 +89,12 @@ The webhook rewrites `url` to `https://github.com/my-org/infra-manifests` and in
 ## Building
 
 ```bash
-go build ./...
-go test ./...
-make manifests    # regenerate CRDs
-make build        # full build (fmt + vet + binary)
+task generate     # regenerate deepcopy + CRDs
+task validate     # vet + build
+task test         # unit tests
+task test-e2e     # build image + E2E tests
+task build        # build binary
+task lint         # golangci-lint
 ```
 
 ## Project Structure
